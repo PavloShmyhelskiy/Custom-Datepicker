@@ -1,24 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import DatePicker from "./components/DatePicker/DatePicker";
 
 function App() {
+  const [date, setDate] = useState([new Date(new Date() - 24 * 3600 * 5 * 1000), new Date()])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DatePicker type="range" value={date} onChange={setDate} />
   );
 }
 
