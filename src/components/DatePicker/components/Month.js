@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import moment from 'moment';
 import Cell from './Cell';
 
-function Month({value, type}) {
+function Month({value, type, setValue}) {
     const [displayedMonth, setDisplayedMonth] = useState(type === 'multiRange' ? value[0][0] : value[0] || value);
 
     const setPrevMonth = useCallback(() => {
@@ -44,6 +44,7 @@ function Month({value, type}) {
             </div>
             <div>
                 <table cellPadding="0px" cellSpacing="0px">
+                    <thead>
                     <tr>
                         <th>Mon</th>    
                         <th>Tue</th>    
@@ -53,15 +54,18 @@ function Month({value, type}) {
                         <th>Sat</th>    
                         <th>Sun</th>    
                     </tr>
+                    </thead>
+                    <tbody>
                     {dates.map((week, id) => (
                         <tr key={id}>
                             {week.map((day, idx) => (
                                 <td key={idx}>
-                                    <Cell date={day} value={value} type={type} displayedMonth={displayedMonth}/>
+                                    <Cell date={day} value={value} type={type} displayedMonth={displayedMonth} setValue={setValue}/>
                                 </td>
                             ))}
                         </tr>
                     ))}
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -75,5 +79,6 @@ Month.propTypes = {
         PropTypes.arrayOf(PropTypes.instanceOf(Date)), // date range
         PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.instanceOf(Date))), // date ranges
       ]).isRequired,
+    setValue: PropTypes.func.isRequired,
 };
 export default Month;

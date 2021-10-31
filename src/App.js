@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DatePicker from "./components/DatePicker/DatePicker";
 
 function App() {
-  const [date, setDate] = useState([new Date(new Date() - 24 * 3600 * 5 * 1000), new Date()])
-
+  const [date, setDate] = useState(new Date())
+  console.log(date);
   return (
-    <DatePicker type="range" value={date} onChange={setDate} />
+    <DatePicker type="single" value={date} onChange={setDate} />
   );
 }
 

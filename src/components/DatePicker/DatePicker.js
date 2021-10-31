@@ -1,21 +1,24 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 import ValueDisplayer from './components/ValueDisplayer';
 import Month from './components/Month';
 
 function DatePicker({ type, value, onChange}) {
     const [isOpen, setIsOpen] = useState(false);
+    const [local, setLocal] = useState(value);
 
     const toggleDatePicker = useCallback(() => {
         setIsOpen(prev => !prev);
     }, []);
-
-    
+    useEffect(() => {
+        setLocal(value);
+    },[value])
 
     return (
         <>
-            <ValueDisplayer type={type} value={value} onClick={toggleDatePicker}/>
-            {isOpen && <Month type={type} value={value} />}
+            <ValueDisplayer type={type} value={local} onClick={toggleDatePicker}/>
+            {isOpen && <Month type={type} value={local} setValue={setLocal}/>}
+            {isOpen && <button onClick={() => onChange(local)}>Apply</button>}
         </>
     )
 }
