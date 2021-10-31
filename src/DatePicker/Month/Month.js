@@ -1,8 +1,21 @@
 import React, { useState, useCallback, useMemo } from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment';
-import Cell from './Cell';
+import Cell from './Cell/Cell';
+import styled from 'styled-components';
 
+const Title = styled.div`
+    display: flex;
+    font-size: 20px;
+    justify-content: space-between;
+    width: 245px;
+    margin: 8px 0px;
+    padding-top: 8px;
+    border-top: 2px solid gray;
+`
+const Th = styled.th`
+    color: lightgray;
+`
 function Month({value, type, setValue}) {
     const [displayedMonth, setDisplayedMonth] = useState(type === 'multiRange' ? value[0][0] : value[0] || value);
 
@@ -37,23 +50,23 @@ function Month({value, type, setValue}) {
 
     return (
         <div>
-            <div>
+            <Title>
                 <span onClick={setPrevMonth}>{'<'}</span>
                 {moment(displayedMonth).format('MMMM YYYY')}
                 <span onClick={setNextMonth}>{'>'}</span>
-            </div>
+            </Title>
             <div>
                 <table cellPadding="0px" cellSpacing="0px">
                     <thead>
-                    <tr>
-                        <th>Mon</th>    
-                        <th>Tue</th>    
-                        <th>Wed</th>    
-                        <th>THu</th>    
-                        <th>Fri</th>    
-                        <th>Sat</th>    
-                        <th>Sun</th>    
-                    </tr>
+                        <tr>
+                            <Th>Mon</Th>    
+                            <Th>Tue</Th>    
+                            <Th>Wed</Th>    
+                            <Th>Thu</Th>    
+                            <Th>Fri</Th>    
+                            <Th>Sat</Th>    
+                            <Th>Sun</Th>    
+                        </tr>
                     </thead>
                     <tbody>
                     {dates.map((week, id) => (

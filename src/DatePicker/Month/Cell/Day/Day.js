@@ -1,13 +1,17 @@
 import styled, { css } from "styled-components";
 
 
-const SC = styled.span`
+const Day = styled.span`
 color: black;
-width: 100%;
-height:100%;
+width: 35px;
+height: 30px;
+margin: 2px 0px;
 display: inline-block;
+text-align: center;
+line-height: 30px;
+cursor: pointer;
 ${props => props.isInactive && css`
-    color: gray;
+    color: lightgrey;
   `}
   ${props => props.isinRange && css`
     color: blue;
@@ -27,4 +31,4 @@ ${props => props.isInactive && css`
 `}
 `;
 
-export default SC;
+export default Day;

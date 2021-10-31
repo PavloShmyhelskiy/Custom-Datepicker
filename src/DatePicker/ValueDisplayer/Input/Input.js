@@ -6,7 +6,7 @@ const Input = styled.label`
     background: transparent;
     padding: 5px 10px;
     display: inline-block;
-    width: 100px;
+    width: 90px;
     vertical-align: top; 
     text-align: left;
     user-select: none;

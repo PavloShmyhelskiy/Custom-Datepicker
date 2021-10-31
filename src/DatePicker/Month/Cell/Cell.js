@@ -1,6 +1,6 @@
-import React, { useMemo, useState , useCallback } from 'react'
+import React, { useMemo, useCallback } from 'react'
 import moment from 'moment';
-import SC from './SC';
+import Day from './Day/Day';
 
 function Cell({ date, value, type, displayedMonth, setValue}) {
     const isStart = useMemo(() => {
@@ -66,7 +66,7 @@ function Cell({ date, value, type, displayedMonth, setValue}) {
     }, [value, setValue, type, date])
 
     return (
-        <SC 
+        <Day 
             isInactive={!moment(date).isSame(moment(displayedMonth), 'month')}
             isStart={isStart}
             isinRange={isinRange}
@@ -74,7 +74,7 @@ function Cell({ date, value, type, displayedMonth, setValue}) {
             onClick={onClickHandler}
         >
             {date.getDate()}
-        </SC>
+        </Day>
     )
 }
 export default Cell;

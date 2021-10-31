@@ -2,7 +2,7 @@ import moment from 'moment';
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import Input from './Input.';
+import Input from './Input/Input';
 
 
 function ValueDisplayer({ value, type, onClick }) {
